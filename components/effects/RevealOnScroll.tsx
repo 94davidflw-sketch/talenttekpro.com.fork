@@ -6,11 +6,16 @@ import { cn } from "@/lib/cn";
 type RevealOnScrollProps = {
   children: React.ReactNode;
   className?: string;
-  /** Extra delay in seconds, added before the wave stagger. */
+  /** Extra delay in seconds, added before the first object in a group. */
   delay?: number;
 };
 
-const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+/** Slow at the start, quicker through the middle, slow at the end. */
+const EASE = "ease-in-out";
+/** How long one object takes to rise, start to finish. */
+const DURATION = 0.7;
+/** Wait between the start of one object and the next. */
+const STAGGER = 0.15;
 
 function isGrid(el: HTMLElement) {
   return [...el.classList].some(
@@ -18,19 +23,24 @@ function isGrid(el: HTMLElement) {
   );
 }
 
-/** Cards, headings, and rows. Nested lines of text stay with their parent. */
-function collect(root: HTMLElement): HTMLElement[] {
-  if (isGrid(root)) {
-    return [...root.children].filter((node): node is HTMLElement => node instanceof HTMLElement);
-  }
+function isGroup(el: HTMLElement) {
+  return el.tagName === "UL" || el.tagName === "OL" || el.tagName === "DL" || isGrid(el);
+}
 
+/** Cards, headings, and rows. Text inside a card stays with that card. */
+function collect(root: HTMLElement): HTMLElement[] {
   const out: HTMLElement[] = [];
 
-  const visit = (el: HTMLElement) => {
-    if (el.tagName === "UL" || el.tagName === "OL" || el.tagName === "DL" || isGrid(el)) {
+  const add = (el: HTMLElement) => {
+    if (isGroup(el)) {
       for (const kid of el.children) {
-        if (kid instanceof HTMLElement) out.push(kid);
+        if (kid instanceof HTMLElement) add(kid);
       }
+      return;
+    }
+
+    if (el.tagName !== "DIV" && el.tagName !== "SECTION") {
+      out.push(el);
       return;
     }
 
@@ -46,8 +56,8 @@ function collect(root: HTMLElement): HTMLElement[] {
           kid.tagName === "DL",
       );
 
-    if (onlyLayout) {
-      kids.forEach(visit);
+    if (kids.some(isGroup) || onlyLayout) {
+      kids.forEach(add);
       return;
     }
 
@@ -55,7 +65,7 @@ function collect(root: HTMLElement): HTMLElement[] {
   };
 
   for (const kid of root.children) {
-    if (kid instanceof HTMLElement) visit(kid);
+    if (kid instanceof HTMLElement) add(kid);
   }
 
   return out;
@@ -63,12 +73,23 @@ function collect(root: HTMLElement): HTMLElement[] {
 
 function clearMotion(node: HTMLElement) {
   node.style.translate = "";
+  node.style.opacity = "";
   node.style.transition = "";
 }
 
+/** Top to bottom, then left to right on the same row. */
+function byReadingOrder(a: HTMLElement, b: HTMLElement) {
+  const ra = a.getBoundingClientRect();
+  const rb = b.getBoundingClientRect();
+  const rowA = Math.round(ra.top / 24);
+  const rowB = Math.round(rb.top / 24);
+  if (rowA !== rowB) return rowA - rowB;
+  return ra.left - rb.left;
+}
+
 /**
- * One rise per object. Color and opacity stay untouched so navy text
- * cannot wash out into a different shade. The motion runs once.
+ * One rise per object, in reading order.
+ * Opacity goes from hidden to solid. Color is not animated.
  */
 export function RevealOnScroll({ children, className, delay = 0 }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -83,33 +104,37 @@ export function RevealOnScroll({ children, className, delay = 0 }: RevealOnScrol
     if (objects.length === 0) return;
 
     const pending = new Set<HTMLElement>();
-    const waits = new WeakMap<HTMLElement, number>();
     const timers: number[] = [];
 
-    objects.forEach((node, index) => {
+    objects.forEach((node) => {
       const rect = node.getBoundingClientRect();
       const alreadyVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 48;
       if (alreadyVisible) return;
 
-      const wait = delay + (index % 6) * 0.1;
-      waits.set(node, wait);
       node.style.translate = "0 40px";
-      node.style.transition = `translate 0.8s ${EASE} ${wait}s`;
+      node.style.opacity = "0";
       pending.add(node);
     });
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const node = entry.target as HTMLElement;
-          if (!pending.has(node)) continue;
+        const ready = entries
+          .filter((entry) => entry.isIntersecting && pending.has(entry.target as HTMLElement))
+          .map((entry) => entry.target as HTMLElement)
+          .sort(byReadingOrder);
+
+        ready.forEach((node, index) => {
           pending.delete(node);
           observer.unobserve(node);
+          const wait = delay + index * STAGGER;
+          const motion = `${DURATION}s ${EASE} ${wait}s`;
+          node.style.transition = `translate ${motion}, opacity ${motion}`;
           node.style.translate = "0 0";
-          const wait = waits.get(node) ?? 0;
-          timers.push(window.setTimeout(() => clearMotion(node), (wait + 0.9) * 1000));
-        }
+          node.style.opacity = "1";
+          timers.push(
+            window.setTimeout(() => clearMotion(node), (wait + DURATION + 0.08) * 1000),
+          );
+        });
       },
       { threshold: 0.12 },
     );
