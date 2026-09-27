@@ -11,7 +11,7 @@ import { media } from "@/content/media";
 
 export function Manifesto() {
   return (
-    <section className="relative z-[1] overflow-visible bg-white pt-20 pb-24 md:pt-24 md:pb-28">
+    <section className="relative z-[1] overflow-visible bg-white pt-12 pb-14 md:pt-24 md:pb-28">
       <SectionEdge fill="#ffffff" variant="wave" position="top" />
 
       <ScrollShape
@@ -23,7 +23,7 @@ export function Manifesto() {
 
       <Container className="relative z-10">
         <RevealOnScroll>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-16 xl:gap-20">
             <div className="max-w-xl">
               <h2 className="section-title">
                 {home.manifesto.headline}{" "}
@@ -31,7 +31,7 @@ export function Manifesto() {
                   {home.manifesto.headlineAccent}
                 </span>
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-[#64748B] md:text-lg">
+              <p className="mt-4 text-base leading-relaxed text-[#64748B] md:mt-6 md:text-lg">
                 {home.manifesto.body}
               </p>
             </div>
