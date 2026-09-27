@@ -74,6 +74,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep the scrollbar slot so the nav does not shift when search locks the page. */
+  scrollbar-gutter: stable;
 }
 
 html,
@@ -210,6 +212,24 @@ body {
   outline: none;
   outline-offset: 0;
   box-shadow: none;
+}
+
+@property --search-blur {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --search-dim {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.search-scrim {
+  background-color: rgb(5 25 55 / var(--search-dim));
+  -webkit-backdrop-filter: blur(var(--search-blur));
+  backdrop-filter: blur(var(--search-blur));
 }
 
 @media (prefers-reduced-motion: reduce) {
