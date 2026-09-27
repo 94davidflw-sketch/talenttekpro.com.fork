@@ -4,14 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Search, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { searchKindLabel, searchSite, type SearchHit, type SearchKind } from "@/lib/search";
 
 const KIND_ORDER: SearchKind[] = ["case-study", "service", "blog"];
 
-const overlayEase = [0.22, 1, 0.36, 1] as const;
+const OPEN_EASE = "easeInOut" as const;
+const OPEN_TIME = 0.7;
 
 type HeaderSearchProps = {
   className?: string;
@@ -29,15 +30,38 @@ export function HeaderSearch({
 }: HeaderSearchProps) {
   const pathname = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
+  const lockRef = useRef<{ html: string; body: string } | null>(null);
+  const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [mounted, setMounted] = useState(false);
+  const motionTime = reduce ? 0 : OPEN_TIME;
 
   const results = useMemo(() => searchSite(query), [query]);
   const grouped = KIND_ORDER.map((kind) => ({
     kind,
     items: results.filter((hit) => hit.kind === kind),
   })).filter((group) => group.items.length > 0);
+
+  const unlockPage = () => {
+    const saved = lockRef.current;
+    if (!saved) return;
+    lockRef.current = null;
+    document.documentElement.style.overflow = saved.html;
+    document.body.style.overflow = saved.body;
+  };
+
+  const lockPage = () => {
+    if (lockRef.current) return;
+    const html = document.documentElement;
+    const body = document.body;
+    lockRef.current = {
+      html: html.style.overflow,
+      body: body.style.overflow,
+    };
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+  };
 
   const close = () => {
     setOpen(false);
@@ -51,6 +75,7 @@ export function HeaderSearch({
 
   useEffect(() => {
     setMounted(true);
+    return () => unlockPage();
   }, []);
 
   useEffect(() => {
@@ -68,12 +93,7 @@ export function HeaderSearch({
 
     const previous = document.activeElement as HTMLElement | null;
     const frame = window.requestAnimationFrame(() => inputRef.current?.focus());
-    const html = document.documentElement;
-    const body = document.body;
-    const prevHtml = html.style.overflow;
-    const prevBody = body.style.overflow;
-    html.style.overflow = "hidden";
-    body.style.overflow = "hidden";
+    lockPage();
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
@@ -83,8 +103,6 @@ export function HeaderSearch({
     return () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener("keydown", onKey);
-      html.style.overflow = prevHtml;
-      body.style.overflow = prevBody;
       previous?.focus?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,20 +111,20 @@ export function HeaderSearch({
   const overlay =
     mounted &&
     createPortal(
-      <AnimatePresence>
+      <AnimatePresence onExitComplete={unlockPage}>
         {open ? (
           <motion.div
             key="site-search"
-            className="fixed inset-x-0 bottom-0 top-[var(--ttp-header-h)] z-40 overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: overlayEase }}
+            className="search-scrim fixed inset-x-0 bottom-0 top-[var(--ttp-header-h)] z-40"
+            initial={{ "--search-blur": "0px", "--search-dim": 0 }}
+            animate={{ "--search-blur": "12px", "--search-dim": 0.28 }}
+            exit={{ "--search-blur": "0px", "--search-dim": 0 }}
+            transition={{ duration: motionTime, ease: OPEN_EASE }}
           >
             <button
               type="button"
               aria-label="Close search"
-              className="absolute inset-0 bg-[#051937]/35 backdrop-blur-xl"
+              className="absolute inset-0"
               onClick={close}
             />
             <motion.div
@@ -114,10 +132,10 @@ export function HeaderSearch({
               aria-modal="true"
               aria-labelledby="site-search-title"
               className="relative border-b border-black/[0.06] bg-white shadow-[0_18px_48px_rgba(5,25,55,0.12)]"
-              initial={{ y: "-100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-100%" }}
-              transition={{ duration: 0.32, ease: overlayEase }}
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: motionTime, ease: OPEN_EASE }}
             >
               <h2 id="site-search-title" className="sr-only">
                 Search
@@ -142,9 +160,14 @@ export function HeaderSearch({
                 </button>
               </div>
               {query.trim() ? (
-                <div className="mx-auto max-w-[1200px] px-2 pb-3 md:px-3 lg:px-5">
+                <motion.div
+                  className="mx-auto max-w-[1200px] px-2 pb-3 md:px-3 lg:px-5"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: motionTime * 0.75, ease: OPEN_EASE }}
+                >
                   <ResultsBody query={query} grouped={grouped} onNavigate={close} />
-                </div>
+                </motion.div>
               ) : null}
             </motion.div>
           </motion.div>
