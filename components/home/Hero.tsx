@@ -52,7 +52,7 @@ export function Hero() {
         alt={media.landing.alt}
         fill
         priority
-        className="border-0 object-cover object-[72%_center] outline-none ring-0 sm:object-[68%_center]"
+        className="border-0 object-cover object-left outline-none ring-0"
       />
 
       {/* Layer 2 — content */}
