@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
   description: site.description,
   icons: {
-    icon: [{ url: "/logo/logo-no-text-512.png", type: "image/png", sizes: "883x883" }],
-    apple: [{ url: "/logo/logo-no-text-512.png", sizes: "180x180" }],
+    icon: [{ url: "/tab-icon.png", type: "image/png", sizes: "64x64" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
     title: `${site.name} | ${site.descriptor}`,
