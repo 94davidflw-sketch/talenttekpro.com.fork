@@ -10,9 +10,9 @@ export type HeroTone = "ink" | "light" | "plate";
  * Unlisted images are light backgrounds, so the copy stays navy.
  */
 const HERO_TONES: Record<string, { base: HeroTone; md: HeroTone }> = {
-  "/media/heroes/process-meeting.jpg": { base: "plate", md: "plate" },
-  "/media/heroes/about-boardroom.jpg": { base: "plate", md: "plate" },
-  "/media/heroes/careers-desks.jpg": { base: "plate", md: "plate" },
+  "/media/heroes/process-meeting.jpg": { base: "ink", md: "ink" },
+  "/media/heroes/about-boardroom.jpg": { base: "ink", md: "ink" },
+  "/media/heroes/careers-desks.jpg": { base: "ink", md: "ink" },
   "/media/cases/case-pipeline.png": { base: "plate", md: "plate" },
 };
 

@@ -21,8 +21,10 @@ export default function ContactPage() {
     <main className="flex-1">
       <PageHero
         layout="viewport"
+        className="hero--light-overlay hero--veil-subtle"
         eyebrow={contactPage.hero.eyebrow}
         title={contactPage.hero.title}
+        titleAccent={contactPage.hero.titleAccent}
         support={contactPage.hero.support}
         image={media.contactHero}
       />

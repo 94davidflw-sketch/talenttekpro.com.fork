@@ -4,8 +4,8 @@ export const processPage = {
     "How TalentTekPro runs an engagement: discover the constraints, match people and architecture, build, then scale.",
   hero: {
     eyebrow: "How We Work",
-    title: "Unlock the potential of",
-    titleAccent: "your business.",
+    title: "Open potential.",
+    titleAccent: "Your business.",
     support:
       "TalentTekPro blends workforce strategy with deep technical delivery. We learn your constraints, then match people and architecture to the same success metrics.",
   },

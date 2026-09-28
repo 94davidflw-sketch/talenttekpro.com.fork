@@ -21,6 +21,7 @@ export default function BlogPage() {
     <main className="flex-1">
       <PageHero
         layout="viewport"
+        className="hero--clear"
         eyebrow={blogPage.hero.eyebrow}
         title={blogPage.hero.title}
         titleAccent={blogPage.hero.titleAccent}

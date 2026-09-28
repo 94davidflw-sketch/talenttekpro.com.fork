@@ -55,8 +55,8 @@ export const servicesPage = {
     "Eight disciplines under one accountable partner: talent acquisition, embedded squads, AI, cloud, and engineering.",
   hero: {
     eyebrow: "Services",
-    title: "Eight disciplines. One",
-    titleAccent: "accountable partner.",
+    title: "Eight practices.",
+    titleAccent: "One partner.",
     support:
       "Senior recruiters and engineers under one roof: coherent hiring, faster decisions, teams that stay through launch.",
   },

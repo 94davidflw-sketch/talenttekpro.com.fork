@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { HeroRise } from "@/components/effects/HeroRise";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { SectionEdge } from "@/components/ui/SectionShell";
 import { PromptMedia, type PromptMediaAsset } from "@/components/ui/PromptMedia";
@@ -63,23 +64,31 @@ export function PageHero({
           priority
           className="border-0 object-cover object-center outline-none ring-0"
         />
-        <div className="relative z-10 flex h-full flex-col">
-          <div className="flex flex-1 items-center px-5 pt-[var(--ttp-header-h)] sm:px-8 md:px-[9%] lg:px-[10%]">
-            <div className="hero-plate max-w-[640px] -translate-y-[4%] md:-translate-y-[6%]">
-              <p className="hero-copy-text text-[0.8125rem] font-medium tracking-[0.16em] text-[var(--hero-eyebrow)] uppercase md:text-sm">
-                {eyebrow}
-              </p>
-              <span
-                className="mt-3 block h-px w-10 bg-[var(--hero-rule)]"
-                aria-hidden
-              />
-              <h1 className="hero-copy-text font-display mt-5 text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight text-[var(--hero-title)]">
-                {title}
+        <div className="hero-content relative z-10 flex h-full flex-col">
+          <div className="flex flex-1 items-start px-5 pt-[max(5.5rem,calc(50svh-11.875rem))] sm:px-8 md:px-[9%] lg:px-[10%]">
+            <HeroRise className="hero-plate relative max-w-[600px]">
+              <div className="absolute bottom-full left-0 mb-5">
+                <p className="hero-copy-text text-[1.625rem] font-medium tracking-[0.16em] text-[var(--hero-eyebrow)] uppercase md:text-[1.75rem]">
+                  {eyebrow}
+                </p>
+                <span
+                  className="mt-3 block h-px w-20 bg-[var(--hero-rule)]"
+                  aria-hidden
+                />
+              </div>
+              <h1 className="hero-copy-text font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight">
+                <span
+                  className={cn(
+                    "block text-[var(--hero-title)]",
+                    titleAccent && "whitespace-nowrap",
+                  )}
+                >
+                  {title}
+                </span>
                 {titleAccent ? (
-                  <>
-                    {" "}
-                    <span className="text-[var(--hero-accent)]">{titleAccent}</span>
-                  </>
+                  <span className="mt-1 block whitespace-nowrap text-[var(--hero-accent)]">
+                    {titleAccent}
+                  </span>
                 ) : null}
               </h1>
               {support ? (
@@ -108,7 +117,7 @@ export function PageHero({
                   ))}
                 </dl>
               ) : null}
-            </div>
+            </HeroRise>
           </div>
         </div>
       </header>
@@ -130,10 +139,10 @@ export function PageHero({
       <Container className="relative z-10">
         <RevealOnScroll>
           <div>
-            <p className="text-[0.8125rem] font-medium tracking-[0.16em] text-[#475569] uppercase md:text-sm">
+            <p className="text-[1.625rem] font-medium tracking-[0.16em] text-[#475569] uppercase md:text-[1.75rem]">
               {eyebrow}
             </p>
-            <span className="mt-3 block h-px w-10 bg-[#1E60FF]" aria-hidden />
+            <span className="mt-3 block h-px w-20 bg-[#1E60FF]" aria-hidden />
           </div>
           <div
             className={
@@ -144,12 +153,11 @@ export function PageHero({
           >
             <div className={image ? "lg:col-span-6" : "max-w-3xl"}>
               <h1 className="section-title">
-                {title}
+                <span className="block">{title}</span>
                 {titleAccent ? (
-                  <>
-                    {" "}
-                    <span className="hero-gradient-text">{titleAccent}</span>
-                  </>
+                  <span className="mt-1 block hero-gradient-text">
+                    {titleAccent}
+                  </span>
                 ) : null}
               </h1>
               {support ? (

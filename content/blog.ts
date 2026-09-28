@@ -32,8 +32,8 @@ export const blogPage = {
     "Essays and post-mortems from recruiters and engineers who shipped the work.",
   hero: {
     eyebrow: "Journal",
-    title: "Field notes from the",
-    titleAccent: "engine room.",
+    title: "Field notes.",
+    titleAccent: "Engine room.",
     support:
       "Essays and post-mortems from recruiters and engineers who shipped the work: talent, delivery, and the systems between them.",
   },

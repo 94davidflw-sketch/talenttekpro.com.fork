@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Clock3, Play, Rocket, Star, Users } from "lucide-react";
+import { HeroRise } from "@/components/effects/HeroRise";
 import Link from "next/link";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { home } from "@/content/home";
@@ -56,12 +57,7 @@ export function Hero() {
       {/* Layer 2 — content */}
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex flex-1 items-center px-5 pt-[var(--ttp-header-h)] sm:px-8 md:px-[9%] lg:px-[10%]">
-          <motion.div
-            className="max-w-[600px] -translate-y-[4%] md:-translate-y-[6%]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <HeroRise className="max-w-[600px] -translate-y-[4%] md:-translate-y-[6%]">
             <h1 className="hero-copy-text font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight">
               <span className="block text-[var(--hero-title)]">Build the team.</span>
               <span className="mt-1 block text-[var(--hero-accent)]">Ship the system.</span>
@@ -86,7 +82,7 @@ export function Hero() {
                 {cta.secondary.label}
               </Link>
             </div>
-          </motion.div>
+          </HeroRise>
         </div>
 
         {/* Floating glass stats — overlaps bottom of photograph */}

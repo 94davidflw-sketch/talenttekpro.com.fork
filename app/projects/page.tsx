@@ -21,6 +21,7 @@ export default function ProjectsPage() {
     <main className="flex-1">
       <PageHero
         layout="viewport"
+        className="hero--clear"
         eyebrow={projectsPage.hero.eyebrow}
         title={projectsPage.hero.title}
         titleAccent={projectsPage.hero.titleAccent}

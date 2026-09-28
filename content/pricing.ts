@@ -6,7 +6,8 @@ export const pricingPage = {
     "Transparent starting points for projects, squads, retainers, and talent search: custom after discovery.",
   hero: {
     eyebrow: "Pricing / Engagement",
-    title: "Starting points. Custom after discovery.",
+    title: "Starting points.",
+    titleAccent: "Custom after discovery.",
     support:
       "Talent search fees and delivery SOWs are scoped after we understand constraints, success metrics, and timeline.",
   },
