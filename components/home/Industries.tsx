@@ -110,9 +110,9 @@ export function Industries() {
   return (
     <section
       id="industries"
-      className="relative z-[1] scroll-mt-28 overflow-visible bg-[#F5F9FC] section-pad"
+      className="relative z-[1] scroll-mt-28 overflow-visible bg-white section-pad"
     >
-      <SectionEdge fill="#F5F9FC" variant="soft" position="top" />
+      <SectionEdge fill="#ffffff" variant="soft" position="top" />
       <ScrollShape
         className="bottom-[12%] -left-14 h-52 w-44 text-[#00B4FF] md:h-64 md:w-56"
         reverse
