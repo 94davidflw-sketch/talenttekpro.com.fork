@@ -216,32 +216,32 @@ export const home = {
       support: "Four phases. One accountable partner for talent and delivery.",
       items: [
         {
-          num: "00",
+          num: "01",
           label: "discover",
           title: "Discover",
           body: "Map constraints, stakeholders, success metrics (hire + system).",
         },
         {
-          num: "01",
+          num: "02",
           label: "match-design",
           title: "Match & Design",
           body: "Role scorecards, architecture ADRs, delivery roadmap.",
         },
         {
-          num: "02",
+          num: "03",
           label: "build-embed",
           title: "Build & Embed",
           body: "Two-week sprints; talent ramps beside the squad.",
         },
         {
-          num: "03",
+          num: "04",
           label: "scale",
           title: "Scale",
           body: "Harden, hand off, optimize hiring loops and platforms for growth.",
         },
       ],
     },
-    cta: { label: "Start a project →", href: "/contact" },
+    cta: { label: "Start a project", href: "/contact" },
   },
   partners: {
     index: "009 / Trust",
@@ -374,7 +374,7 @@ export const home = {
         a: "Both: from Series A ventures to Fortune-scale enterprises that need senior talent and shipping capacity.",
       },
     ],
-    cta: { label: "View all FAQs →", href: "/faq" },
+    cta: { label: "View all FAQs", href: "/faq" },
   },
   getStarted: {
     index: "014 / Get Started",

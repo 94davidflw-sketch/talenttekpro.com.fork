@@ -39,6 +39,8 @@ export default function CareersPage() {
   return (
     <main className="flex-1">
       <PageHero
+        layout="viewport"
+        className="hero-open hero--light-overlay hero--veil-strong"
         eyebrow={careersPage.hero.eyebrow}
         title={careersPage.hero.title}
         titleAccent={careersPage.hero.titleAccent}

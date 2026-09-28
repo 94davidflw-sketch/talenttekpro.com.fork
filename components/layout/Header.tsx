@@ -15,23 +15,44 @@ function navActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+/** Full-screen photo heroes sit under the fixed header. Text-only pages do not. */
+function hasBleedHero(pathname: string) {
+  if (pathname === "/") return true;
+  if (
+    pathname === "/services" ||
+    pathname === "/about" ||
+    pathname === "/process" ||
+    pathname === "/careers" ||
+    pathname === "/contact" ||
+    pathname === "/blog" ||
+    pathname === "/projects"
+  ) {
+    return true;
+  }
+  if (pathname.startsWith("/blog/") || pathname.startsWith("/projects/")) {
+    return true;
+  }
+  return false;
+}
+
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const bleedHero = hasBleedHero(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // Transparent over landing hero until the user scrolls past the first section
-  const overlay = isHome && !scrolled && !open;
+  // Transparent over a full-screen hero until the user scrolls past it
+  const overlay = bleedHero && !scrolled && !open;
 
   useEffect(() => {
     const onScroll = () => {
-      if (!isHome) {
+      if (!bleedHero) {
         setScrolled(window.scrollY > 24);
         return;
       }
       // Stay transparent while still in the hero; solidify once past ~12% of hero height
-      const hero = document.getElementById("home-hero");
+      const hero = document.getElementById(isHome ? "home-hero" : "page-hero");
       const heroH = hero?.offsetHeight ?? 850;
       setScrolled(window.scrollY > Math.min(heroH * 0.12, 100));
     };
@@ -42,7 +63,7 @@ export function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [isHome]);
+  }, [bleedHero, isHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -150,8 +171,8 @@ export function Header() {
           </div>
         ) : null}
       </header>
-      {/* Home: hero is full-bleed under the fixed header — no spacer */}
-      {!isHome ? (
+      {/* Full-screen heroes sit under the fixed header — no spacer */}
+      {!bleedHero ? (
         <div className="h-[var(--ttp-header-h)] shrink-0" aria-hidden />
       ) : null}
     </>

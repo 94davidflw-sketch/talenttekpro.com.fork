@@ -17,6 +17,7 @@ export default function PricingPage() {
       <PageHero
         eyebrow={pricingPage.hero.eyebrow}
         title={pricingPage.hero.title}
+        titleAccent={pricingPage.hero.titleAccent}
         support={pricingPage.hero.support}
       />
 

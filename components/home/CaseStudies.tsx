@@ -137,7 +137,25 @@ function ProjectCard({
           {project.description}
         </p>
 
-        <div className="mt-auto flex items-center justify-between pt-5">
+        {featured && project.href === "/projects/dating-web-app" ? (
+          <div className="relative mt-4 hidden min-h-[7.5rem] flex-1 overflow-hidden rounded-2xl lg:block">
+            <SafeImage
+              src="/media/cases/dating-detail.png"
+              alt="A phone showing a dating match with a soft blue heart between two profiles."
+              fill
+              className="object-cover object-center"
+            />
+          </div>
+        ) : null}
+
+        <div
+          className={cn(
+            "flex items-center justify-between pt-5",
+            featured && project.href === "/projects/dating-web-app"
+              ? "mt-auto lg:mt-4"
+              : "mt-auto",
+          )}
+        >
           <div className="flex items-center gap-3 text-xs text-[#64748B]">
             <span className="inline-flex items-center gap-1.5">
               <Calendar className="size-3.5 text-[#94A3B8]" aria-hidden />

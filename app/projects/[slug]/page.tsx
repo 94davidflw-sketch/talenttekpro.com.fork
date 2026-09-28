@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page/PageHero";
 import { PageCta } from "@/components/page/PageCta";
 import { Container } from "@/components/ui/Container";
-import { SafeImage } from "@/components/ui/SafeImage";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { getProject, projectCases, projectMedia } from "@/content/projects";
 import { cta } from "@/content/site";
@@ -33,25 +32,17 @@ export default async function ProjectDetailPage({ params }: Props) {
   return (
     <main className="flex-1">
       <PageHero
+        layout="viewport"
         eyebrow={`${project.type} · ${project.year}`}
         title={project.title}
         support={project.summary}
+        image={media}
       />
 
       <section className="section-elevated border-t border-border section-pad">
         <Container>
           <RevealOnScroll>
-            <div className="grid gap-10 lg:grid-cols-12">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-border lg:col-span-7">
-                <SafeImage
-                  src={media.src}
-                  alt={media.alt}
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-              <div className="lg:col-span-5">
+            <div className="max-w-3xl">
                 <h2 className="font-display text-2xl font-semibold text-text">Outcomes</h2>
                 <ul className="mt-4 space-y-2">
                   {project.outcome.map((o) => (
@@ -64,7 +55,6 @@ export default async function ProjectDetailPage({ params }: Props) {
                 <p className="mt-2 font-mono text-sm text-teal">
                   {project.stack.join(" · ")}
                 </p>
-              </div>
             </div>
           </RevealOnScroll>
         </Container>

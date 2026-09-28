@@ -25,8 +25,8 @@ export const projectsPage = {
     "Filterable case studies spanning talent placements and digital product delivery.",
   hero: {
     eyebrow: "Case Studies",
-    title: "Every team we placed. Every system we",
-    titleAccent: "put into production.",
+    title: "Every team.",
+    titleAccent: "Every system.",
     support:
       "Filter by type, then open the full story: hiring outcomes and shipped product.",
   },

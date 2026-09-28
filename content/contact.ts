@@ -4,7 +4,8 @@ export const contactPage = {
     "Start a project or get a quote: talent, delivery, or both.",
   hero: {
     eyebrow: "Contact",
-    title: "Tell us what you need to hire or ship.",
+    title: "Your brief.",
+    titleAccent: "Hire or ship.",
     support:
       "Share a short brief. We’ll reply with next steps for talent, delivery, or a hybrid engagement.",
   },

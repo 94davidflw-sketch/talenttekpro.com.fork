@@ -32,13 +32,13 @@ export const blogPage = {
     "Essays and post-mortems from recruiters and engineers who shipped the work.",
   hero: {
     eyebrow: "Journal",
-    title: "Field notes from the",
-    titleAccent: "engine room.",
+    title: "Field notes.",
+    titleAccent: "Engine room.",
     support:
       "Essays and post-mortems from recruiters and engineers who shipped the work: talent, delivery, and the systems between them.",
   },
   stats: [
-    { value: "6", label: "Field notes" },
+    { value: "7", label: "Field notes" },
     { value: "2", label: "Disciplines" },
     { value: "Weekly", label: "Cadence" },
   ],
@@ -341,6 +341,54 @@ export const blogPage = {
           heading: "What we refuse to ADR",
           paragraphs: [
             "Implementation trivia, ticket-level choices, and reversible naming debates. If a decision does not constrain future work or spending, it stays in the PR. ADRs earn their keep by surviving the next reorg.",
+          ],
+        },
+      ],
+    },
+    {
+      slug: "signals-before-the-page",
+      category: "DevOps",
+      title: "Signals before the page",
+      excerpt:
+        "The few traces and budgets we write down before an incident, not after the thread starts.",
+      read: "6 min",
+      date: "Dec 18, 2025",
+      author: "Noah Park",
+      role: "Platform Engineer",
+      featured: false,
+      cover: {
+        id: "blog-signals-before-the-page",
+        src: "/media/blog/signals-before-the-page.png",
+        path: "/media/blog/signals-before-the-page.png",
+        prompt: `${BLOG_MARKETING} Meaning: quiet production signals. One frosted glass panel standing in a soft cyan ring. Pale studio, no text. 16:9. ${BLOG_BRAND}`,
+        alt: "A frosted glass panel standing inside a soft cyan ring.",
+      },
+      tags: ["Traces", "Budgets", "On-call"],
+      takeaways: [
+        "Name the three signals that would have explained the last incident.",
+        "Set a latency and error budget before the feature ships, not during the page.",
+        "Keep the on-call view to those signals so the page stays specific.",
+      ],
+      pullQuote:
+        "A page is useful when the signal was chosen before the incident, not invented in the thread.",
+      body: [
+        {
+          paragraphs: [
+            "Most on-call noise comes from dashboards that grew after the last outage. The useful signals are the ones written down while the system is quiet: what would tell you the product is actually failing, and what you can ignore until morning.",
+          ],
+        },
+        {
+          heading: "Three signals, not thirty",
+          paragraphs: [
+            "We ask every embed to name three traces before launch: the user path that must stay fast, the dependency that fails closed, and the queue that hides work. Everything else can wait. A page that lists thirty charts trains people to mute it.",
+            "Those three live next to the service, with a latency budget and an error budget. If either budget burns, the page says which signal moved. If neither moved, it is not a page.",
+          ],
+        },
+        {
+          heading: "Write it before Friday",
+          paragraphs: [
+            "The record is short: signal, owner, budget, and what “fine” looks like. We add it in the same week as the ADR, so the decision and the way we watch it ship together.",
+            "When the incident comes, the thread starts from that note. The team is not inventing a theory from a wall of graphs. That is how on-call stays calm without pretending the system never fails.",
           ],
         },
       ],

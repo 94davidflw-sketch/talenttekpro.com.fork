@@ -4,8 +4,8 @@ export const aboutPage = {
     "Recruiters, engineers, and innovation partners: founded 2021 to close the gap between hiring and shipping.",
   hero: {
     eyebrow: "About",
-    title: "Recruiters, engineers, and",
-    titleAccent: "innovation partners.",
+    title: "Recruiters.",
+    titleAccent: "Engineers.",
     support:
       "Founded to close the gap between “we need talent” and “we need it shipped.” Today we serve 40+ clients across 10+ countries with a senior remote-first team.",
   },

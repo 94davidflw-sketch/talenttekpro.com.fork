@@ -1,9 +1,11 @@
 import { Container } from "@/components/ui/Container";
+import { HeroRise } from "@/components/effects/HeroRise";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { SectionEdge } from "@/components/ui/SectionShell";
 import { PromptMedia, type PromptMediaAsset } from "@/components/ui/PromptMedia";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { cn } from "@/lib/cn";
+import { heroToneAttrs } from "@/lib/heroTone";
 
 type PageHeroStat = {
   label: string;
@@ -20,6 +22,11 @@ type PageHeroProps = {
   /** Optional metrics row under the hero copy/media */
   stats?: readonly PageHeroStat[];
   className?: string;
+  /**
+   * split: copy beside a framed photo.
+   * viewport: full-screen photograph with copy over it, matching the home hero.
+   */
+  layout?: "split" | "viewport";
 };
 
 function isFinalMedia(image: PromptMediaAsset) {
@@ -38,7 +45,85 @@ export function PageHero({
   image,
   stats,
   className,
+  layout = "split",
 }: PageHeroProps) {
+  if (layout === "viewport" && image && isFinalMedia(image)) {
+    return (
+      <header
+        id="page-hero"
+        {...heroToneAttrs(image.src)}
+        className={cn(
+          "hero-copy relative z-20 h-svh min-h-svh overflow-hidden",
+          className,
+        )}
+      >
+        <SafeImage
+          src={image.src}
+          alt={image.alt}
+          fill
+          priority
+          className="border-0 object-cover object-center outline-none ring-0"
+        />
+        <div className="hero-content relative z-10 flex h-full flex-col">
+          <div className="flex flex-1 items-start px-5 pt-[max(5.5rem,calc(50svh-11.875rem))] sm:px-8 md:px-[9%] lg:px-[10%]">
+            <HeroRise className="hero-plate relative max-w-[600px]">
+              <div className="absolute bottom-full left-0 mb-5">
+                <p className="hero-copy-text text-[1.625rem] font-medium tracking-[0.16em] text-[var(--hero-eyebrow)] uppercase md:text-[1.75rem]">
+                  {eyebrow}
+                </p>
+                <span
+                  className="mt-3 block h-px w-20 bg-[var(--hero-rule)]"
+                  aria-hidden
+                />
+              </div>
+              <h1 className="hero-copy-text font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight">
+                <span
+                  className={cn(
+                    "block text-[var(--hero-title)]",
+                    titleAccent && "whitespace-nowrap",
+                  )}
+                >
+                  {title}
+                </span>
+                {titleAccent ? (
+                  <span className="mt-1 block whitespace-nowrap text-[var(--hero-accent)]">
+                    {titleAccent}
+                  </span>
+                ) : null}
+              </h1>
+              {support ? (
+                <p className="hero-copy-text mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[var(--hero-support)] md:text-lg">
+                  {support}
+                </p>
+              ) : null}
+              {stats && stats.length > 0 ? (
+                <dl
+                  className={cn(
+                    "mt-8 grid gap-x-8 gap-y-4",
+                    stats.length === 3
+                      ? "grid-cols-3"
+                      : "grid-cols-2 sm:grid-cols-4",
+                  )}
+                >
+                  {stats.map((s) => (
+                    <div key={s.label}>
+                      <dt className="hero-copy-text text-[0.7rem] font-semibold tracking-[0.14em] text-[var(--hero-stat)] uppercase">
+                        {s.label}
+                      </dt>
+                      <dd className="hero-copy-text font-display mt-1 text-2xl font-bold tracking-tight text-[var(--hero-value)] md:text-3xl">
+                        {s.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
+            </HeroRise>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
   // Stats heroes use white so the curve into the next soft-blue band reads clearly
   const fill = stats && stats.length > 0 ? "#ffffff" : "#F5F9FC";
 
@@ -54,10 +139,10 @@ export function PageHero({
       <Container className="relative z-10">
         <RevealOnScroll>
           <div>
-            <p className="text-[0.8125rem] font-medium tracking-[0.16em] text-[#475569] uppercase md:text-sm">
+            <p className="text-[1.625rem] font-medium tracking-[0.16em] text-[#475569] uppercase md:text-[1.75rem]">
               {eyebrow}
             </p>
-            <span className="mt-3 block h-px w-10 bg-[#1E60FF]" aria-hidden />
+            <span className="mt-3 block h-px w-20 bg-[#1E60FF]" aria-hidden />
           </div>
           <div
             className={
@@ -68,12 +153,11 @@ export function PageHero({
           >
             <div className={image ? "lg:col-span-6" : "max-w-3xl"}>
               <h1 className="section-title">
-                {title}
+                <span className="block">{title}</span>
                 {titleAccent ? (
-                  <>
-                    {" "}
-                    <span className="hero-gradient-text">{titleAccent}</span>
-                  </>
+                  <span className="mt-1 block hero-gradient-text">
+                    {titleAccent}
+                  </span>
                 ) : null}
               </h1>
               {support ? (

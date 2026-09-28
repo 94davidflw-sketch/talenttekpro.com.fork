@@ -17,8 +17,8 @@ export const careersPage = {
     "Build the work you want to be known for: senior recruiting, engineering, and delivery roles.",
   hero: {
     eyebrow: "Careers",
-    title: "Build the work you want to be",
-    titleAccent: "known for.",
+    title: "Build the work.",
+    titleAccent: "Known for it.",
     support:
       "We hire exceptional people, pay competitively, and give them problems that compound: GenAI platforms, enterprise delivery, and talent systems.",
   },
