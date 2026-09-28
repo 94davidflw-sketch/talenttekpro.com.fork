@@ -120,19 +120,19 @@ export default function ContactPage() {
                     </ul>
                   </div>
 
-                  <div className="rounded-[1.5rem] bg-[#051937] p-6 text-white shadow-[0_16px_40px_rgba(5,25,55,0.18)]">
-                    <p className="text-[0.7rem] font-semibold tracking-[0.14em] text-white/55 uppercase">
+                  <div className="rounded-[1.5rem] border border-black/[0.05] bg-white p-6 shadow-[0_16px_40px_rgba(5,25,55,0.04)]">
+                    <p className="text-[0.7rem] font-semibold tracking-[0.14em] text-[#94A3B8] uppercase">
                       {contactPage.process.headline}
                     </p>
                     <ol className="mt-5 space-y-5">
                       {contactPage.process.items.map((item) => (
                         <li key={item.step} className="flex gap-4">
-                          <span className="font-mono text-xs font-medium tracking-wide text-[#00D2FF]">
+                          <span className="font-mono text-xs font-medium tracking-wide text-[#1E60FF]">
                             {item.step}
                           </span>
                           <div>
-                            <p className="text-sm font-medium text-white">{item.title}</p>
-                            <p className="mt-1 text-sm leading-relaxed text-white/65">
+                            <p className="text-sm font-medium text-[#051937]">{item.title}</p>
+                            <p className="mt-1 text-sm leading-relaxed text-[#64748B]">
                               {item.body}
                             </p>
                           </div>

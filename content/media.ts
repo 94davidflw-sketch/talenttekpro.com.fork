@@ -71,23 +71,23 @@ export const media = {
   } satisfies MediaAsset,
   processHero: {
     id: "process-hero",
-    src: "/media/heroes/process-hero.jpg",
-    path: "/media/heroes/process-hero.jpg",
-    prompt: `${MARKETING_PHOTO} ${TEAM} Three young white American men in a bright meeting room: two seated with laptops, one standing at a clean whiteboard. Clear marketing stock scene. 16:9. ${BRAND}`,
+    src: "/media/heroes/process-meeting.jpg",
+    path: "/media/heroes/process-meeting.jpg",
+    prompt: `${MARKETING_PHOTO} ${TEAM} Three young white American men in a bright meeting room: two seated with laptops, one standing at a clean whiteboard. A normal white ceramic coffee mug on the table, not a dark novelty cup. Clear marketing stock scene. 16:9. ${BRAND}`,
     alt: "Young white American team in a bright strategy meeting.",
   } satisfies MediaAsset,
   aboutHero: {
     id: "about-hero",
-    src: "/media/heroes/about-hero.jpg",
-    path: "/media/heroes/about-hero.jpg",
-    prompt: `${MARKETING_PHOTO} ${TEAM} Three young white American men in a bright modern boardroom around a table, talking calmly. Clear corporate marketing stock. 16:9. ${BRAND}`,
-    alt: "Young white American leaders in a bright boardroom.",
+    src: "/media/heroes/about-boardroom.jpg",
+    path: "/media/heroes/about-boardroom.jpg",
+    prompt: `${MARKETING_PHOTO} ${TEAM} Three distinct young white American men in a bright modern boardroom around a table, talking calmly. Different hair, faces, and features so they do not look like the same person. A normal white ceramic coffee mug on the table. No black novelty mugs. Clear corporate marketing stock. 16:9. ${BRAND}`,
+    alt: "Three colleagues in a bright boardroom, each with a different face.",
   } satisfies MediaAsset,
   careersHero: {
     id: "careers-hero",
-    src: "/media/heroes/careers-hero.jpg",
-    path: "/media/heroes/careers-hero.jpg",
-    prompt: `${MARKETING_PHOTO} ${TEAM} Three young white American men working together at standing desks in a bright open office. Clear friendly careers marketing photo. 16:9. ${BRAND}`,
+    src: "/media/heroes/careers-desks.jpg",
+    path: "/media/heroes/careers-desks.jpg",
+    prompt: `${MARKETING_PHOTO} ${TEAM} Three young white American men working together at standing desks in a bright open office. A normal white ceramic coffee mug on the desk, not a dark novelty cup. Clear friendly careers marketing photo. 16:9. ${BRAND}`,
     alt: "Young white American engineers working together in a bright office.",
   } satisfies MediaAsset,
   blogHero: {
@@ -106,10 +106,10 @@ export const media = {
   } satisfies MediaAsset,
   contactHero: {
     id: "contact-hero",
-    src: "/media/heroes/contact-hero.jpg",
-    path: "/media/heroes/contact-hero.jpg",
-    prompt: `${MARKETING_PHOTO} Bright modern office reception desk, empty and welcoming, soft daylight, clean architecture, cyan accent on a small desk lamp. No crowds. Clear contact marketing photo. 16:9. ${BRAND}`,
-    alt: "Bright welcoming office reception desk.",
+    src: "/media/heroes/contact-desk.jpg",
+    path: "/media/heroes/contact-desk.jpg",
+    prompt: `${MARKETING_PHOTO} Bright modern office reception desk, empty and welcoming, soft daylight, clean architecture, cyan accent on a small desk lamp. The wall sign is one simple solid white TalentTekPro mark with no inner shapes, beside a clear white TalentTekPro name. No bright logo colors, no other company names. No crowds. 16:9.`,
+    alt: "Bright office reception with the TalentTekPro mark on the wall.",
   } satisfies MediaAsset,
   cases: [
     {
