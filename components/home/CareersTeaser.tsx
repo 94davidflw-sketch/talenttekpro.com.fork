@@ -32,7 +32,7 @@ export function CareersTeaser() {
                 </span>
               </h2>
             </div>
-            <LinkArrow href="/careers">All roles →</LinkArrow>
+            <LinkArrow href="/careers">All roles</LinkArrow>
           </div>
           <ul className="mt-10 divide-y divide-border border-y border-border">
             {home.careers.roles.map((role) => (

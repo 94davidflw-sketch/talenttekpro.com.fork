@@ -196,7 +196,7 @@ export function Industries() {
           </div>
 
           <div className="mt-10">
-            <LinkArrow href="/contact">Discuss your industry →</LinkArrow>
+            <LinkArrow href="/contact">Discuss your industry</LinkArrow>
           </div>
         </RevealOnScroll>
       </Container>
