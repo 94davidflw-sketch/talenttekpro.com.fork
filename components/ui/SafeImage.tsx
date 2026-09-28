@@ -1,9 +1,11 @@
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
 
 type SafeImageProps = {
   src: string;
   alt: string;
   className?: string;
+  style?: CSSProperties;
   /** Absolute fill inside a `relative` parent (same role as next/image `fill`). */
   fill?: boolean;
   width?: number;
@@ -20,6 +22,7 @@ export function SafeImage({
   src,
   alt,
   className,
+  style,
   fill = false,
   width,
   height,
@@ -35,6 +38,7 @@ export function SafeImage({
         fetchPriority={priority ? "high" : "auto"}
         loading={priority ? "eager" : "lazy"}
         className={cn("absolute inset-0 h-full w-full", className)}
+        style={style}
         suppressHydrationWarning
       />
     );
@@ -51,6 +55,7 @@ export function SafeImage({
       fetchPriority={priority ? "high" : "auto"}
       loading={priority ? "eager" : "lazy"}
       className={className}
+      style={style}
       suppressHydrationWarning
     />
   );

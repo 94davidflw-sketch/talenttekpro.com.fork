@@ -137,6 +137,7 @@ export default function ServicesPage() {
   return (
     <main className="flex-1">
       <PageHero
+        layout="viewport"
         eyebrow={servicesPage.hero.eyebrow}
         title={servicesPage.hero.title}
         titleAccent={servicesPage.hero.titleAccent}

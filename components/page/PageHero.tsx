@@ -20,6 +20,11 @@ type PageHeroProps = {
   /** Optional metrics row under the hero copy/media */
   stats?: readonly PageHeroStat[];
   className?: string;
+  /**
+   * split: copy beside a framed photo.
+   * viewport: full-screen photograph with copy over it, matching the home hero.
+   */
+  layout?: "split" | "viewport";
 };
 
 function isFinalMedia(image: PromptMediaAsset) {
@@ -30,6 +35,10 @@ function isFinalMedia(image: PromptMediaAsset) {
  * Shared inner-page hero: matches landing typography (section-title scale),
  * light brand band, and optional curved photo edge.
  */
+const heroLift = {
+  textShadow: "0 1px 0 rgba(255,255,255,0.55), 0 2px 12px rgba(255,255,255,0.35)",
+} as const;
+
 export function PageHero({
   eyebrow,
   title,
@@ -38,7 +47,61 @@ export function PageHero({
   image,
   stats,
   className,
+  layout = "split",
 }: PageHeroProps) {
+  if (layout === "viewport" && image && isFinalMedia(image)) {
+    return (
+      <header
+        id="page-hero"
+        className={cn(
+          "relative z-20 h-svh min-h-svh overflow-hidden",
+          className,
+        )}
+      >
+        <SafeImage
+          src={image.src}
+          alt={image.alt}
+          fill
+          priority
+          className="border-0 object-cover object-center outline-none ring-0"
+        />
+        <div className="relative z-10 flex h-full flex-col">
+          <div className="flex flex-1 items-center px-5 pt-[var(--ttp-header-h)] sm:px-8 md:px-[9%] lg:px-[10%]">
+            <div className="max-w-[640px] -translate-y-[4%] md:-translate-y-[6%]">
+              <p
+                className="text-[0.8125rem] font-medium tracking-[0.16em] text-[#475569] uppercase md:text-sm"
+                style={heroLift}
+              >
+                {eyebrow}
+              </p>
+              <span className="mt-3 block h-px w-10 bg-[#1E60FF]" aria-hidden />
+              <h1
+                className="font-display mt-5 text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight text-[#051937]"
+                style={heroLift}
+              >
+                {title}
+                {titleAccent ? (
+                  <>
+                    {" "}
+                    <span className="text-[#246BFF]">{titleAccent}</span>
+                  </>
+                ) : null}
+              </h1>
+              {support ? (
+                <p
+                  className="mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[#334155] md:text-lg"
+                  style={heroLift}
+                >
+                  {support}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
   // Stats heroes use white so the curve into the next soft-blue band reads clearly
   const fill = stats && stats.length > 0 ? "#ffffff" : "#F5F9FC";
 
