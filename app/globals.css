@@ -371,6 +371,123 @@ body {
   isolation: isolate;
 }
 
+/*
+ * Hero copy contrast. Phone crop is data-hero-tone; desktop crop is
+ * data-hero-tone-md. Ink sits on light photos. Light sits on dark photos.
+ */
+.hero-copy {
+  --hero-eyebrow: #475569;
+  --hero-title: #051937;
+  --hero-accent: #246bff;
+  --hero-support: #243044;
+  --hero-stat: #475569;
+  --hero-value: #1e60ff;
+  --hero-rule: #1e60ff;
+  --hero-shadow:
+    0 0 1px rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(255, 255, 255, 0.9),
+    0 0 18px rgba(255, 255, 255, 0.72);
+}
+
+.hero-copy[data-hero-tone="plate"] {
+  --hero-eyebrow: #475569;
+  --hero-title: #051937;
+  --hero-accent: #246bff;
+  --hero-support: #243044;
+  --hero-stat: #475569;
+  --hero-value: #1e60ff;
+  --hero-rule: #1e60ff;
+  --hero-shadow: none;
+}
+
+.hero-copy[data-hero-tone="light"] {
+  --hero-eyebrow: rgba(255, 255, 255, 0.86);
+  --hero-title: #ffffff;
+  --hero-accent: #c5dbff;
+  --hero-support: rgba(255, 255, 255, 0.92);
+  --hero-stat: rgba(255, 255, 255, 0.78);
+  --hero-value: #d7e7ff;
+  --hero-rule: rgba(255, 255, 255, 0.9);
+  --hero-shadow:
+    0 1px 2px rgba(5, 25, 55, 0.55),
+    0 8px 22px rgba(5, 25, 55, 0.4);
+}
+
+@media (min-width: 768px) {
+  .hero-copy[data-hero-tone-md="ink"] {
+    --hero-eyebrow: #475569;
+    --hero-title: #051937;
+    --hero-accent: #246bff;
+    --hero-support: #243044;
+    --hero-stat: #475569;
+    --hero-value: #1e60ff;
+    --hero-rule: #1e60ff;
+    --hero-shadow:
+      0 0 1px rgba(255, 255, 255, 0.95),
+      0 1px 2px rgba(255, 255, 255, 0.9),
+      0 0 18px rgba(255, 255, 255, 0.72);
+  }
+
+  .hero-copy[data-hero-tone-md="plate"] {
+    --hero-eyebrow: #475569;
+    --hero-title: #051937;
+    --hero-accent: #246bff;
+    --hero-support: #243044;
+    --hero-stat: #475569;
+    --hero-value: #1e60ff;
+    --hero-rule: #1e60ff;
+    --hero-shadow: none;
+  }
+
+  .hero-copy[data-hero-tone-md="light"] {
+    --hero-eyebrow: rgba(255, 255, 255, 0.86);
+    --hero-title: #ffffff;
+    --hero-accent: #c5dbff;
+    --hero-support: rgba(255, 255, 255, 0.92);
+    --hero-stat: rgba(255, 255, 255, 0.78);
+    --hero-value: #d7e7ff;
+    --hero-rule: rgba(255, 255, 255, 0.9);
+    --hero-shadow:
+      0 1px 2px rgba(5, 25, 55, 0.55),
+      0 8px 22px rgba(5, 25, 55, 0.4);
+  }
+}
+
+.hero-copy-text {
+  text-shadow: var(--hero-shadow);
+}
+
+.hero-plate {
+  background: transparent;
+}
+
+.hero-copy[data-hero-tone="plate"] .hero-plate {
+  border-radius: 1.75rem;
+  background: rgba(255, 255, 255, var(--hero-plate, 0.82));
+  padding: 1.35rem 1.35rem 1.2rem;
+  box-shadow: 0 16px 40px rgba(28, 58, 110, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+@media (min-width: 768px) {
+  .hero-copy[data-hero-tone-md="ink"] .hero-plate,
+  .hero-copy[data-hero-tone-md="light"] .hero-plate {
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .hero-copy[data-hero-tone-md="plate"] .hero-plate {
+    border-radius: 1.75rem;
+    background: rgba(255, 255, 255, var(--hero-plate, 0.82));
+    padding: 1.6rem 1.7rem 1.45rem;
+    box-shadow: 0 16px 40px rgba(28, 58, 110, 0.12);
+    backdrop-filter: blur(16px);
+  }
+}
+
 /* Hide Spline “Built with” badge inside platform scene */
 .platform-spline a[href*="spline.design"] {
   opacity: 0 !important;

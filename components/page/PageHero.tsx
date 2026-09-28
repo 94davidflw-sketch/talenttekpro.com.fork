@@ -4,6 +4,7 @@ import { SectionEdge } from "@/components/ui/SectionShell";
 import { PromptMedia, type PromptMediaAsset } from "@/components/ui/PromptMedia";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { cn } from "@/lib/cn";
+import { heroToneAttrs } from "@/lib/heroTone";
 
 type PageHeroStat = {
   label: string;
@@ -35,10 +36,6 @@ function isFinalMedia(image: PromptMediaAsset) {
  * Shared inner-page hero: matches landing typography (section-title scale),
  * light brand band, and optional curved photo edge.
  */
-const heroLift = {
-  textShadow: "0 1px 0 rgba(255,255,255,0.55), 0 2px 12px rgba(255,255,255,0.35)",
-} as const;
-
 export function PageHero({
   eyebrow,
   title,
@@ -53,8 +50,9 @@ export function PageHero({
     return (
       <header
         id="page-hero"
+        {...heroToneAttrs(image.src)}
         className={cn(
-          "relative z-20 h-svh min-h-svh overflow-hidden",
+          "hero-copy relative z-20 h-svh min-h-svh overflow-hidden",
           className,
         )}
       >
@@ -67,31 +65,25 @@ export function PageHero({
         />
         <div className="relative z-10 flex h-full flex-col">
           <div className="flex flex-1 items-center px-5 pt-[var(--ttp-header-h)] sm:px-8 md:px-[9%] lg:px-[10%]">
-            <div className="max-w-[640px] -translate-y-[4%] md:-translate-y-[6%]">
-              <p
-                className="text-[0.8125rem] font-medium tracking-[0.16em] text-[#475569] uppercase md:text-sm"
-                style={heroLift}
-              >
+            <div className="hero-plate max-w-[640px] -translate-y-[4%] md:-translate-y-[6%]">
+              <p className="hero-copy-text text-[0.8125rem] font-medium tracking-[0.16em] text-[var(--hero-eyebrow)] uppercase md:text-sm">
                 {eyebrow}
               </p>
-              <span className="mt-3 block h-px w-10 bg-[#1E60FF]" aria-hidden />
-              <h1
-                className="font-display mt-5 text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight text-[#051937]"
-                style={heroLift}
-              >
+              <span
+                className="mt-3 block h-px w-10 bg-[var(--hero-rule)]"
+                aria-hidden
+              />
+              <h1 className="hero-copy-text font-display mt-5 text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight text-[var(--hero-title)]">
                 {title}
                 {titleAccent ? (
                   <>
                     {" "}
-                    <span className="text-[#246BFF]">{titleAccent}</span>
+                    <span className="text-[var(--hero-accent)]">{titleAccent}</span>
                   </>
                 ) : null}
               </h1>
               {support ? (
-                <p
-                  className="mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[#334155] md:text-lg"
-                  style={heroLift}
-                >
+                <p className="hero-copy-text mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[var(--hero-support)] md:text-lg">
                   {support}
                 </p>
               ) : null}
@@ -106,16 +98,10 @@ export function PageHero({
                 >
                   {stats.map((s) => (
                     <div key={s.label}>
-                      <dt
-                        className="text-[0.7rem] font-semibold tracking-[0.14em] text-[#475569] uppercase"
-                        style={heroLift}
-                      >
+                      <dt className="hero-copy-text text-[0.7rem] font-semibold tracking-[0.14em] text-[var(--hero-stat)] uppercase">
                         {s.label}
                       </dt>
-                      <dd
-                        className="font-display mt-1 text-2xl font-bold tracking-tight text-[#1E60FF] md:text-3xl"
-                        style={heroLift}
-                      >
+                      <dd className="hero-copy-text font-display mt-1 text-2xl font-bold tracking-tight text-[var(--hero-value)] md:text-3xl">
                         {s.value}
                       </dd>
                     </div>

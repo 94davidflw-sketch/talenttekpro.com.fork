@@ -8,6 +8,7 @@ import { home } from "@/content/home";
 import { media } from "@/content/media";
 import { cta } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { heroToneAttrs } from "@/lib/heroTone";
 
 const heroStats = [
   {
@@ -36,15 +37,12 @@ const heroStats = [
   },
 ];
 
-const softLift = {
-  textShadow: "0 1px 0 rgba(255,255,255,0.55), 0 2px 12px rgba(255,255,255,0.35)",
-} as const;
-
 export function Hero() {
   return (
     <section
       id="home-hero"
-      className="relative z-20 h-svh min-h-svh overflow-hidden"
+      {...heroToneAttrs(media.landing.src)}
+      className="hero-copy relative z-20 h-svh min-h-svh overflow-hidden"
     >
       {/* Layer 1 — full-bleed photograph (no color washes — keep image clear) */}
       <SafeImage
@@ -64,18 +62,12 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1
-              className="font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight"
-              style={softLift}
-            >
-              <span className="block text-[#051937]">Build the team.</span>
-              <span className="mt-1 block text-[#246BFF]">Ship the system.</span>
+            <h1 className="hero-copy-text font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-tight">
+              <span className="block text-[var(--hero-title)]">Build the team.</span>
+              <span className="mt-1 block text-[var(--hero-accent)]">Ship the system.</span>
             </h1>
 
-            <p
-              className="mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[#334155] md:text-lg"
-              style={softLift}
-            >
+            <p className="hero-copy-text mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[var(--hero-support)] md:text-lg">
               {home.hero.support}
             </p>
 
