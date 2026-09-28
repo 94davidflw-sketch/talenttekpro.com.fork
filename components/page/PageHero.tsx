@@ -95,6 +95,33 @@ export function PageHero({
                   {support}
                 </p>
               ) : null}
+              {stats && stats.length > 0 ? (
+                <dl
+                  className={cn(
+                    "mt-8 grid gap-x-8 gap-y-4",
+                    stats.length === 3
+                      ? "grid-cols-3"
+                      : "grid-cols-2 sm:grid-cols-4",
+                  )}
+                >
+                  {stats.map((s) => (
+                    <div key={s.label}>
+                      <dt
+                        className="text-[0.7rem] font-semibold tracking-[0.14em] text-[#475569] uppercase"
+                        style={heroLift}
+                      >
+                        {s.label}
+                      </dt>
+                      <dd
+                        className="font-display mt-1 text-2xl font-bold tracking-tight text-[#1E60FF] md:text-3xl"
+                        style={heroLift}
+                      >
+                        {s.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
             </div>
           </div>
         </div>

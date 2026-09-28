@@ -20,6 +20,7 @@ export default function AboutPage() {
   return (
     <main className="flex-1">
       <PageHero
+        layout="viewport"
         eyebrow={aboutPage.hero.eyebrow}
         title={aboutPage.hero.title}
         titleAccent={aboutPage.hero.titleAccent}

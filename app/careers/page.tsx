@@ -39,6 +39,7 @@ export default function CareersPage() {
   return (
     <main className="flex-1">
       <PageHero
+        layout="viewport"
         eyebrow={careersPage.hero.eyebrow}
         title={careersPage.hero.title}
         titleAccent={careersPage.hero.titleAccent}

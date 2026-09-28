@@ -15,10 +15,30 @@ function navActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+/** Full-screen photo heroes sit under the fixed header. Text-only pages do not. */
+function hasBleedHero(pathname: string) {
+  if (pathname === "/") return true;
+  if (
+    pathname === "/services" ||
+    pathname === "/about" ||
+    pathname === "/process" ||
+    pathname === "/careers" ||
+    pathname === "/contact" ||
+    pathname === "/blog" ||
+    pathname === "/projects"
+  ) {
+    return true;
+  }
+  if (pathname.startsWith("/blog/") || pathname.startsWith("/projects/")) {
+    return true;
+  }
+  return false;
+}
+
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const bleedHero = isHome || pathname === "/services";
+  const bleedHero = hasBleedHero(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 

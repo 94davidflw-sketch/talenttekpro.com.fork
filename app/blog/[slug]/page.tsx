@@ -45,9 +45,11 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <main className="flex-1">
       <PageHero
+        layout="viewport"
         eyebrow={`${post.category} · ${post.read} read`}
         title={post.title}
         support={post.excerpt}
+        image={post.cover}
       />
 
       <section className="relative z-[1] overflow-visible bg-white section-pad">
@@ -69,18 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
               All articles
             </Link>
 
-            <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-12">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] shadow-[0_24px_60px_rgba(5,25,55,0.12)] lg:col-span-8">
-                <SafeImage
-                  src={post.cover.src}
-                  alt={post.cover.alt}
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-
-              <aside className="flex flex-col justify-between rounded-[1.5rem] bg-[#F5F9FC] p-6 md:p-7 lg:col-span-4">
+            <aside className="mt-8 flex max-w-xl flex-col justify-between rounded-[1.5rem] bg-[#F5F9FC] p-6 md:p-7">
                 <div>
                   <p className="text-[0.75rem] font-semibold tracking-[0.14em] text-[#94A3B8] uppercase">
                     Written by
@@ -129,8 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
                     ))}
                   </div>
                 </div>
-              </aside>
-            </div>
+            </aside>
           </RevealOnScroll>
         </Container>
       </section>
