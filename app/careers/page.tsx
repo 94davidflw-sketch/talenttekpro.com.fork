@@ -40,7 +40,11 @@ export default function CareersPage() {
     <main className="flex-1">
       <PageHero
         layout="viewport"
-        className="hero-open hero--light-overlay hero--veil-strong"
+        className="hero-open hero--light-overlay hero--veil-strong hero--m-photo"
+        mobileActions={[
+          { href: "#open-roles", label: "See open roles →", variant: "primary" },
+          { href: "/about", label: "Learn about our team", variant: "ghost" },
+        ]}
         eyebrow={careersPage.hero.eyebrow}
         title={careersPage.hero.title}
         titleAccent={careersPage.hero.titleAccent}

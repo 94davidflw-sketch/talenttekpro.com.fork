@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Play } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { HeroRise } from "@/components/effects/HeroRise";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
@@ -22,6 +24,12 @@ type PageHeroProps = {
   /** Optional metrics row under the hero copy/media */
   stats?: readonly PageHeroStat[];
   className?: string;
+  /** Phone-only hero buttons. Hidden from the md breakpoint up. */
+  mobileActions?: readonly {
+    href: string;
+    label: string;
+    variant: "primary" | "ghost";
+  }[];
   /**
    * split: copy beside a framed photo.
    * viewport: full-screen photograph with copy over it, matching the home hero.
@@ -45,6 +53,7 @@ export function PageHero({
   image,
   stats,
   className,
+  mobileActions,
   layout = "split",
 }: PageHeroProps) {
   if (layout === "viewport" && image && isFinalMedia(image)) {
@@ -57,18 +66,24 @@ export function PageHero({
           className,
         )}
       >
-        <SafeImage
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority
-          className="border-0 object-cover object-center outline-none ring-0"
-        />
+        <picture className="pointer-events-none absolute inset-0 block">
+          {image.mobileSrc ? (
+            <source media="(max-width: 767px)" srcSet={image.mobileSrc} />
+          ) : null}
+          <img
+            src={image.src}
+            alt={image.alt}
+            decoding="async"
+            fetchPriority="high"
+            className="hero-photo absolute inset-0 h-full w-full border-0 object-cover object-center outline-none ring-0"
+            suppressHydrationWarning
+          />
+        </picture>
         <div className="hero-content relative z-10 flex h-full flex-col">
-          <div className="flex flex-1 items-start px-5 pt-[max(5.5rem,calc(50svh-11.875rem))] sm:px-8 md:px-[9%] lg:px-[10%]">
-            <HeroRise className="hero-plate relative max-w-[600px]">
-              <div className="absolute bottom-full left-0 mb-5">
-                <p className="hero-copy-text text-[1.625rem] font-medium tracking-[0.16em] text-[var(--hero-eyebrow)] uppercase md:text-[1.75rem]">
+          <div className="flex flex-1 items-start px-5 pt-28 pb-10 sm:px-8 md:px-[9%] md:pt-[max(5.5rem,calc(50svh-11.875rem))] md:pb-0 lg:px-[10%]">
+            <HeroRise className="hero-plate relative w-full max-w-[600px]">
+              <div className="absolute bottom-full left-0 mb-4 md:mb-5">
+                <p className="hero-copy-text text-[0.75rem] font-medium tracking-[0.16em] text-[var(--hero-eyebrow)] uppercase md:text-[1.75rem]">
                   {eyebrow}
                 </p>
                 <span
@@ -92,9 +107,33 @@ export function PageHero({
                 ) : null}
               </h1>
               {support ? (
-                <p className="hero-copy-text mt-5 max-w-[520px] text-[17px] leading-[1.6] font-medium text-[var(--hero-support)] md:text-lg">
+                <p className="hero-support hero-copy-text mt-4 max-w-[520px] text-[15px] leading-[1.55] font-medium text-[var(--hero-support)] md:mt-5 md:text-lg md:leading-[1.6]">
                   {support}
                 </p>
+              ) : null}
+              {mobileActions && mobileActions.length > 0 ? (
+                <div className="hero-mobile-actions mt-6 flex w-full max-w-[520px] flex-col gap-3 md:hidden">
+                  {mobileActions.map((action) =>
+                    action.variant === "primary" ? (
+                      <Link
+                        key={action.href + action.label}
+                        href={action.href}
+                        className="inline-flex h-12 items-center justify-center rounded-full bg-[#1769FF] px-6 text-[15px] font-semibold text-white shadow-[0_10px_24px_rgba(23,105,255,0.28)]"
+                      >
+                        {action.label}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={action.href + action.label}
+                        href={action.href}
+                        className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#071B3A]/12 bg-white px-6 text-[15px] font-semibold text-[#071B3A] shadow-[0_4px_16px_rgba(7,27,58,0.06)]"
+                      >
+                        <Play className="size-3.5 fill-current" aria-hidden />
+                        {action.label}
+                      </Link>
+                    ),
+                  )}
+                </div>
               ) : null}
               {stats && stats.length > 0 ? (
                 <dl

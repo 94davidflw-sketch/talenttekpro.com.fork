@@ -21,7 +21,7 @@ export default function AboutPage() {
     <main className="flex-1">
       <PageHero
         layout="viewport"
-        className="hero-open hero--light-overlay"
+        className="hero-open hero--light-overlay hero--m-lines"
         eyebrow={aboutPage.hero.eyebrow}
         title={aboutPage.hero.title}
         titleAccent={aboutPage.hero.titleAccent}

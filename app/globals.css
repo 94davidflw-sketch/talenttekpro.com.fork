@@ -618,11 +618,540 @@ body {
   }
 }
 
+/* Phone heroes follow the mobile art direction. Desktop veils stay above. */
 @media (max-width: 767px) {
-  .hero--light-overlay::after,
-  .hero--dark-overlay::after {
-    content: none;
+  #page-hero.hero-copy {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  #page-hero h1,
+  #home-hero h1 {
+    font-size: 2.125rem;
+    line-height: 1.05;
+  }
+
+  #page-hero h1 span,
+  #home-hero h1 span {
+    white-space: normal;
+  }
+
+  .hero--m-clean::after,
+  .hero--m-photo::after,
+  .hero--m-soft::after,
+  .hero--m-split::after,
+  .hero--m-lines::before,
+  .hero--m-lines::after,
+  .hero--m-journal::before,
+  .hero--m-journal::after,
+  .hero--m-contact::after,
+  #home-hero.hero--m-dark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Services — full screen. Type sits on the bright windows; the forms stay low. */
+  #page-hero.hero--m-clean {
+    height: 100svh;
+    min-height: 100svh;
+    aspect-ratio: auto;
+  }
+
+  .hero--m-clean::after {
     background: none;
+  }
+
+  .hero--m-clean .hero-photo {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    inset: 0;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: none;
+  }
+
+  #page-hero.hero--m-clean .hero-plate {
+    position: absolute;
+    top: 22svh;
+    left: 5vw;
+    width: 84vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-clean .hero-plate > div:first-child {
+    margin-bottom: 1.6svh;
+  }
+
+  #page-hero.hero--m-clean .hero-plate > div:first-child p {
+    font-size: 5.48vw;
+  }
+
+  #page-hero.hero--m-clean .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-clean h1 {
+    max-width: 92vw;
+    font-size: 10.48vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-clean h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-clean .hero-support {
+    max-width: 72vw;
+    margin-top: 3svh;
+    font-size: 4.15vw;
+    line-height: 1.45;
+  }
+
+  /* Careers — full screen. The person stays on the right; type is a share of the device. */
+  #page-hero.hero--m-photo {
+    height: 100svh;
+    min-height: 100svh;
+    aspect-ratio: auto;
+  }
+
+  .hero--m-photo.hero--light-overlay::after {
+    background: none;
+  }
+
+  .hero--m-photo .hero-photo {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    inset: 0;
+    object-fit: cover;
+    object-position: 32% 36%;
+    transform: none;
+  }
+
+  #page-hero.hero--m-photo .hero-plate {
+    position: absolute;
+    top: 28svh;
+    left: 5vw;
+    width: 90vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-photo .hero-plate > div:first-child p {
+    font-size: 3vw;
+  }
+
+  #page-hero.hero--m-photo .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-photo h1 {
+    max-width: 46vw;
+    font-size: 6.2vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-photo h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-photo .hero-support {
+    max-width: 48vw;
+    margin-top: 2svh;
+    font-size: 3.5vw;
+    line-height: 1.45;
+  }
+
+  #page-hero.hero--m-photo .hero-mobile-actions {
+    width: 90vw;
+    margin-top: 3svh;
+    gap: 1.6svh;
+  }
+
+  #page-hero.hero--m-photo .hero-mobile-actions a {
+    height: 6svh;
+    font-size: 3.6vw;
+  }
+
+  /* Case studies — full screen. Type sits on the window light; the glass card stays to the right. */
+  #page-hero.hero--m-soft {
+    height: 100svh;
+    min-height: 100svh;
+    aspect-ratio: auto;
+  }
+
+  .hero--m-soft::after {
+    background: none;
+  }
+
+  .hero--m-soft .hero-photo {
+    width: 112%;
+    height: 162%;
+    max-width: none;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: -2%;
+    object-fit: cover;
+    object-position: 8% 0%;
+    transform: none;
+  }
+
+  #page-hero.hero--m-soft .hero-plate {
+    position: absolute;
+    top: 24svh;
+    left: 5vw;
+    width: 90vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-soft .hero-plate > div:first-child p {
+    font-size: 3vw;
+  }
+
+  #page-hero.hero--m-soft .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-soft h1 {
+    max-width: 48vw;
+    font-size: 6.2vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-soft h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-soft .hero-support {
+    max-width: 46vw;
+    margin-top: 2svh;
+    font-size: 3.5vw;
+    line-height: 1.45;
+  }
+
+  #page-hero.hero--m-soft dl {
+    width: 44vw;
+    margin-top: 3svh;
+    column-gap: 4vw;
+    row-gap: 1.8svh;
+  }
+
+  #page-hero.hero--m-soft dl dt {
+    font-size: 2.5vw;
+    letter-spacing: 0.08em;
+  }
+
+  #page-hero.hero--m-soft dl dd {
+    font-size: 5vw;
+  }
+
+  /* Approach — full screen. Type sits on the sunlit wall, sized from the device. */
+  #page-hero.hero--m-split {
+    height: 100svh;
+    min-height: 100svh;
+    aspect-ratio: auto;
+  }
+
+  .hero--m-split.hero--light-overlay::after {
+    background: none;
+  }
+
+  .hero--m-split .hero-photo {
+    width: 112%;
+    height: 128%;
+    max-width: none;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: -6%;
+    object-fit: cover;
+    object-position: 30% 0%;
+    transform: none;
+  }
+
+  #page-hero.hero--m-split .hero-plate {
+    position: absolute;
+    top: 22svh;
+    left: 5vw;
+    width: 90vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-split .hero-plate > div:first-child p {
+    font-size: 3vw;
+  }
+
+  #page-hero.hero--m-split .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-split h1 {
+    max-width: 48vw;
+    font-size: 6.2vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-split h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-split .hero-support {
+    max-width: 42vw;
+    margin-top: 2svh;
+    font-size: 3.5vw;
+    line-height: 1.45;
+  }
+
+  /* About — full screen. Type sits on the open light; the ribbons stay low. */
+  #page-hero.hero--m-lines {
+    height: 100svh;
+    min-height: 100svh;
+    aspect-ratio: auto;
+  }
+
+  .hero--m-lines::before,
+  .hero--m-lines.hero--light-overlay::after,
+  .hero--m-lines::after {
+    background: none;
+  }
+
+  .hero--m-lines .hero-photo {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    inset: 0;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: none;
+  }
+
+  #page-hero.hero--m-lines .hero-plate {
+    position: absolute;
+    top: 26svh;
+    left: 5vw;
+    width: 90vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-lines .hero-plate > div:first-child p {
+    font-size: 3vw;
+  }
+
+  #page-hero.hero--m-lines .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-lines h1 {
+    max-width: 70vw;
+    font-size: 6.6vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-lines h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-lines .hero-support {
+    max-width: 72vw;
+    margin-top: 2svh;
+    font-size: 3.5vw;
+    line-height: 1.45;
+  }
+
+  /* Journal — the photo stays clear. No white wash. */
+  .hero--m-journal::before {
+    background: none;
+  }
+
+  .hero--m-journal::after {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 800' fill='none'><path d='M430 40C300 80 250 220 340 340C450 490 220 560 300 760' stroke='%2396C0FF' stroke-opacity='0.9' stroke-width='28' stroke-linecap='round'/></svg>")
+      center / cover no-repeat;
+  }
+
+  /* Contact — full screen. Type size and placement are shares of the device. */
+  #page-hero.hero--m-contact {
+    height: 100svh;
+    min-height: 100svh;
+    aspect-ratio: auto;
+  }
+
+  .hero--m-contact.hero--light-overlay::after {
+    background: none;
+  }
+
+  .hero--m-contact .hero-photo {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    inset: 0;
+    object-fit: cover;
+    object-position: 82% 50%;
+    transform: none;
+  }
+
+  #page-hero.hero--m-contact .hero-plate {
+    position: absolute;
+    top: 28svh;
+    left: 5vw;
+    width: 90vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-contact .hero-plate > div:first-child p {
+    font-size: 3vw;
+  }
+
+  #page-hero.hero--m-contact .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-contact h1 {
+    max-width: 54vw;
+    font-size: 6.6vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-contact h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-contact .hero-support {
+    max-width: 62vw;
+    margin-top: 2svh;
+    font-size: 3.5vw;
+    line-height: 1.45;
+  }
+
+  #page-hero.hero--m-contact .hero-mobile-actions {
+    width: 90vw;
+    margin-top: 3svh;
+    gap: 1.6svh;
+  }
+
+  #page-hero.hero--m-contact .hero-mobile-actions a {
+    height: 6svh;
+    font-size: 3.6vw;
+  }
+
+  /* Home — dark field, white type, the colleague stays on the right */
+  #home-hero.hero--m-dark {
+    --hero-title: #ffffff;
+    --hero-accent: #4c8fff;
+    --hero-support: rgba(255, 255, 255, 0.9);
+  }
+
+  #home-hero.hero--m-dark::after {
+    background: linear-gradient(
+      105deg,
+      rgba(6, 18, 40, 0.82) 0%,
+      rgba(6, 18, 40, 0.62) 42%,
+      rgba(6, 18, 40, 0.28) 68%,
+      rgba(6, 18, 40, 0.08) 100%
+    );
+  }
+
+  #home-hero.hero--m-dark .hero-photo {
+    object-position: 75% center;
+  }
+
+  /* Same phone type as Services on every inner hero. Home stays as it is. */
+  #page-hero.hero--m-photo .hero-plate,
+  #page-hero.hero--m-soft .hero-plate,
+  #page-hero.hero--m-split .hero-plate,
+  #page-hero.hero--m-lines .hero-plate,
+  #page-hero.hero--m-journal .hero-plate,
+  #page-hero.hero--m-contact .hero-plate {
+    position: absolute;
+    top: 22svh;
+    left: 5vw;
+    width: 84vw;
+    max-width: none;
+  }
+
+  #page-hero.hero--m-photo .hero-plate > div:first-child,
+  #page-hero.hero--m-soft .hero-plate > div:first-child,
+  #page-hero.hero--m-split .hero-plate > div:first-child,
+  #page-hero.hero--m-lines .hero-plate > div:first-child,
+  #page-hero.hero--m-journal .hero-plate > div:first-child,
+  #page-hero.hero--m-contact .hero-plate > div:first-child {
+    margin-bottom: 1.6svh;
+  }
+
+  #page-hero.hero--m-photo .hero-plate > div:first-child p,
+  #page-hero.hero--m-soft .hero-plate > div:first-child p,
+  #page-hero.hero--m-split .hero-plate > div:first-child p,
+  #page-hero.hero--m-lines .hero-plate > div:first-child p,
+  #page-hero.hero--m-journal .hero-plate > div:first-child p,
+  #page-hero.hero--m-contact .hero-plate > div:first-child p {
+    font-size: 5.48vw;
+  }
+
+  #page-hero.hero--m-photo .hero-plate > div:first-child span,
+  #page-hero.hero--m-soft .hero-plate > div:first-child span,
+  #page-hero.hero--m-split .hero-plate > div:first-child span,
+  #page-hero.hero--m-lines .hero-plate > div:first-child span,
+  #page-hero.hero--m-journal .hero-plate > div:first-child span,
+  #page-hero.hero--m-contact .hero-plate > div:first-child span {
+    width: 14vw;
+  }
+
+  #page-hero.hero--m-photo h1,
+  #page-hero.hero--m-soft h1,
+  #page-hero.hero--m-split h1,
+  #page-hero.hero--m-lines h1,
+  #page-hero.hero--m-journal h1,
+  #page-hero.hero--m-contact h1 {
+    max-width: 92vw;
+    font-size: 10.48vw;
+    line-height: 1.02;
+  }
+
+  #page-hero.hero--m-photo h1 span,
+  #page-hero.hero--m-soft h1 span,
+  #page-hero.hero--m-split h1 span,
+  #page-hero.hero--m-lines h1 span,
+  #page-hero.hero--m-journal h1 span,
+  #page-hero.hero--m-contact h1 span {
+    white-space: nowrap;
+  }
+
+  #page-hero.hero--m-photo .hero-support,
+  #page-hero.hero--m-soft .hero-support,
+  #page-hero.hero--m-split .hero-support,
+  #page-hero.hero--m-lines .hero-support,
+  #page-hero.hero--m-journal .hero-support,
+  #page-hero.hero--m-contact .hero-support {
+    max-width: 72vw;
+    margin-top: 3svh;
+    font-size: 4.15vw;
+    line-height: 1.45;
+  }
+
+  /* Case studies: two-line support, then a wide 2×2 stat grid. */
+  #page-hero.hero--m-soft .hero-support {
+    max-width: 76vw;
+  }
+
+  #page-hero.hero--m-soft dl {
+    width: 74vw;
+    margin-top: 4svh;
+    column-gap: 6vw;
+    row-gap: 2.6svh;
+  }
+
+  #page-hero.hero--m-soft dl dt {
+    font-size: 2.7vw;
+    letter-spacing: 0.14em;
+  }
+
+  #page-hero.hero--m-soft dl dd {
+    margin-top: 0.6svh;
+    font-size: 8vw;
+    line-height: 1;
   }
 }
 

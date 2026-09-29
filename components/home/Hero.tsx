@@ -43,7 +43,7 @@ export function Hero() {
     <section
       id="home-hero"
       {...heroToneAttrs(media.landing.src)}
-      className="hero-copy relative z-20 h-svh min-h-svh overflow-hidden"
+      className="hero-copy hero--m-dark relative z-20 h-svh min-h-svh overflow-hidden"
     >
       {/* Layer 1 — full-bleed photograph (no color washes — keep image clear) */}
       <SafeImage
@@ -51,7 +51,7 @@ export function Hero() {
         alt={media.landing.alt}
         fill
         priority
-        className="border-0 object-cover object-center outline-none ring-0"
+        className="hero-photo border-0 object-cover object-center outline-none ring-0"
       />
 
       {/* Layer 2 — content */}
@@ -70,13 +70,13 @@ export function Hero() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
                 href={cta.primary.href}
-                className="inline-flex h-[48px] items-center justify-center rounded-full bg-[#246BFF] px-[26px] text-sm font-semibold text-white shadow-[0_10px_28px_rgba(36,107,255,0.28)] transition-colors hover:bg-[#3B7AFF]"
+                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#1769FF] px-[26px] text-sm font-semibold text-white shadow-[0_10px_28px_rgba(23,105,255,0.28)] transition-colors hover:bg-[#3B7AFF] sm:w-auto md:h-[48px] md:bg-[#246BFF] md:shadow-[0_10px_28px_rgba(36,107,255,0.28)]"
               >
                 {cta.primary.label}
               </Link>
               <Link
                 href={cta.secondary.href}
-                className="inline-flex h-[48px] items-center justify-center gap-2 rounded-full border border-[#051937]/16 bg-white/70 px-[26px] text-sm font-semibold text-[#051937] shadow-[0_4px_18px_rgba(20,50,100,0.1)] backdrop-blur-md transition-colors hover:bg-white/90"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/60 bg-[rgba(226,236,248,0.5)] px-[26px] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_8px_24px_rgba(7,27,58,0.14)] backdrop-blur-[28px] backdrop-saturate-[1.4] transition-[background-color,border-color,color] hover:border-white/80 hover:bg-[rgba(226,236,248,0.62)] sm:w-auto md:h-[48px] md:border-[#051937]/16 md:bg-white/70 md:text-[#051937] md:shadow-[0_4px_18px_rgba(20,50,100,0.1)] md:backdrop-blur-md md:backdrop-saturate-100 md:hover:border-[#051937]/16 md:hover:bg-white/90"
               >
                 <Play className="size-3.5 fill-current" aria-hidden />
                 {cta.secondary.label}

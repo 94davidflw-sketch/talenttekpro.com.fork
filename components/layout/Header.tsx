@@ -66,9 +66,18 @@ export function Header() {
   }, [bleedHero, isHome]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const header = document.querySelector("header");
+    const blockIfMenu = (event: Event) => {
+      const target = event.target;
+      if (!(target instanceof Node) || !header?.contains(target)) return;
+      event.preventDefault();
+    };
+    document.addEventListener("wheel", blockIfMenu, { passive: false });
+    document.addEventListener("touchmove", blockIfMenu, { passive: false });
     return () => {
-      document.body.style.overflow = "";
+      document.removeEventListener("wheel", blockIfMenu);
+      document.removeEventListener("touchmove", blockIfMenu);
     };
   }, [open]);
 
@@ -141,7 +150,7 @@ export function Header() {
         </div>
 
         {open ? (
-          <div className="border-t border-black/8 bg-white/95 backdrop-blur-xl lg:hidden">
+          <div className="overscroll-none border-t border-black/8 bg-white lg:hidden">
             <nav className="mx-auto flex max-w-[1320px] flex-col gap-1 px-5 py-4">
               {primaryNav.map((item) => {
                 const active = navActive(pathname, item.href);

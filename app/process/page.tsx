@@ -40,7 +40,7 @@ export default function ProcessPage() {
     <main className="flex-1">
       <PageHero
         layout="viewport"
-        className="hero-open hero--light-overlay hero--veil-soft"
+        className="hero-open hero--light-overlay hero--veil-soft hero--m-split"
         eyebrow={processPage.hero.eyebrow}
         title={processPage.hero.title}
         titleAccent={processPage.hero.titleAccent}
