@@ -38,8 +38,8 @@ export const media = {
   } satisfies MediaAsset,
   landing: {
     id: "landing",
-    src: "/media/heroes/landing-hero.jpg",
-    path: "/media/heroes/landing-hero.jpg",
+    src: "/media/heroes/landing-hero.webp",
+    path: "/media/heroes/landing-hero.webp",
     prompt: `Premium cinematic B2B tech hero. Bright modern open office, large windows, natural daylight. Young professional man (navy sweater, glasses) and woman (light grey sweater) collaborating on a laptop on the RIGHT. Softly blurred coworkers and plants in background. LEFT third quiet bright negative space for headline. No sci-fi, holograms, logos, or readable UI.`,
     alt: "Two colleagues reviewing a laptop together in a bright modern office.",
   } satisfies MediaAsset,
