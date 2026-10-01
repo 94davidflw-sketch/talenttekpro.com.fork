@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 
 export type PromptMediaAsset = Pick<
   MediaAsset,
-  "src" | "path" | "prompt" | "alt"
+  "src" | "path" | "prompt" | "alt" | "mobileSrc"
 > & { id?: string };
 
 type PromptMediaProps = {
