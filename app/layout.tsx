@@ -21,7 +21,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${site.name} | ${site.descriptor}`,
     description: site.description,
-    images: [{ url: "/logo/logo-main-white-text.png", width: 1254, height: 1254 }],
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${site.name}. ${site.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | ${site.descriptor}`,
+    description: site.description,
+    images: ["/og.jpg"],
   },
 };
 
