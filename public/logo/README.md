@@ -11,7 +11,7 @@
 - **Header:** mark + HTML wordmark (`TalentTekPro`)
 - **Footer:** `logo-main-white-text.png` full lockup
 - **Favicon / apple:** `logo-no-text-512.png`
-- **Open Graph:** `logo-main-white-text.png`
+- **Open Graph / link preview:** `public/og.jpg` (1200×630, compressed)
 
 ## Text rules
 
