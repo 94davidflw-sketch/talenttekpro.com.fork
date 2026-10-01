@@ -5,6 +5,7 @@ import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { fontDisplay, fontMono, fontSans } from "@/lib/fonts";
 import { site } from "@/content/site";
+import { organizationJsonLd } from "@/lib/metadata";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -61,6 +62,12 @@ export default function RootLayout({
         className="bg-wash flex min-h-full flex-col font-sans text-[#051937]"
         suppressHydrationWarning
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
         <SmoothScroll>
           <Header />
           {children}
