@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Clock3, Mail, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/page/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -10,11 +9,13 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { contactPage } from "@/content/contact";
 import { media } from "@/content/media";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: contactPage.metaTitle,
   description: contactPage.metaDescription,
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

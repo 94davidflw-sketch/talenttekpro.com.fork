@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page/PageHero";
 import { PageCta } from "@/components/page/PageCta";
 import { Container } from "@/components/ui/Container";
@@ -10,11 +9,13 @@ import { BlogIndex } from "@/components/blog/BlogIndex";
 import { blogPage } from "@/content/blog";
 import { media } from "@/content/media";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: blogPage.metaTitle,
   description: blogPage.metaDescription,
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (

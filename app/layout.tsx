@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: site.url },
   icons: {
     icon: [{ url: "/tab-icon.png", type: "image/png", sizes: "64x64" }],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],

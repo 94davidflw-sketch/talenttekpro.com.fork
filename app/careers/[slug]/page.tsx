@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { CareerApplyForm } from "@/components/careers/CareerApplyForm";
 import { careersPage, getCareerRole } from "@/content/careers";
+import { pageMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,11 +19,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const role = getCareerRole(slug);
-  if (!role) return { title: "Role" };
-  return {
+  if (!role) return { title: { absolute: "Role | TalentTekPro" } };
+  return pageMetadata({
     title: `${role.title} | Careers | TalentTekPro`,
     description: role.summary,
-  };
+    path: `/careers/${role.slug}`,
+  });
 }
 
 export default async function CareerRolePage({ params }: Props) {

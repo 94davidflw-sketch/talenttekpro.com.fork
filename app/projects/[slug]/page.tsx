@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { getProject, projectCases, projectMedia } from "@/content/projects";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,11 +17,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) return { title: "Project" };
-  return {
+  if (!project) return { title: { absolute: "Project | TalentTekPro" } };
+  return pageMetadata({
     title: `${project.title} | Projects | TalentTekPro`,
     description: project.summary,
-  };
+    path: `/projects/${project.slug}`,
+  });
 }
 
 export default async function ProjectDetailPage({ params }: Props) {

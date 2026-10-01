@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page/PageHero";
 import { GetStarted } from "@/components/home/GetStarted";
 import { Container } from "@/components/ui/Container";
@@ -10,11 +9,13 @@ import { SectionEdge } from "@/components/ui/SectionShell";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { aboutPage } from "@/content/about";
 import { media } from "@/content/media";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: aboutPage.metaTitle,
   description: aboutPage.metaDescription,
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

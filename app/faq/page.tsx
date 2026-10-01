@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page/PageHero";
 import { PageCta } from "@/components/page/PageCta";
 import { Container } from "@/components/ui/Container";
@@ -6,11 +5,13 @@ import { FaqList } from "@/components/page/FaqList";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { faqPage } from "@/content/faq";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: faqPage.metaTitle,
   description: faqPage.metaDescription,
-};
+  path: "/faq",
+});
 
 export default function FaqPage() {
   return (

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Brain,
   BriefcaseBusiness,
@@ -28,11 +27,13 @@ import { servicesPage } from "@/content/services";
 import { media } from "@/content/media";
 import { cta } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: servicesPage.metaTitle,
   description: servicesPage.metaDescription,
-};
+  path: "/services",
+});
 
 const tones = [
   {

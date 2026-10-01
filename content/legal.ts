@@ -3,6 +3,8 @@ import { site } from "./site";
 export const legalPage = {
   privacy: {
     metaTitle: "Privacy | TalentTekPro",
+    metaDescription:
+      "How TalentTekPro collects, uses, and protects personal information on talenttekpro.com.",
     hero: {
       eyebrow: "Legal / Privacy",
       title: "Privacy policy",
@@ -37,6 +39,8 @@ export const legalPage = {
   },
   terms: {
     metaTitle: "Terms | TalentTekPro",
+    metaDescription:
+      "Terms that govern use of talenttekpro.com and the services described on it.",
     hero: {
       eyebrow: "Legal / Terms",
       title: "Terms of use",
@@ -71,6 +75,8 @@ export const legalPage = {
   },
   cookies: {
     metaTitle: "Cookies | TalentTekPro",
+    metaDescription:
+      "How TalentTekPro uses cookies and similar technologies on talenttekpro.com.",
     hero: {
       eyebrow: "Legal / Cookies",
       title: "Cookies notice",

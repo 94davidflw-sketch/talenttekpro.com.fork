@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page/PageHero";
 import { PageCta } from "@/components/page/PageCta";
 import { Container } from "@/components/ui/Container";
@@ -10,11 +9,13 @@ import { ProjectsFilter } from "@/components/projects/ProjectsFilter";
 import { projectsPage } from "@/content/projects";
 import { media } from "@/content/media";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: projectsPage.metaTitle,
   description: projectsPage.metaDescription,
-};
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

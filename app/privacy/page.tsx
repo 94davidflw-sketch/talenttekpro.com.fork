@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page/PageHero";
 import { LegalSections } from "@/components/page/LegalSections";
 import { legalPage } from "@/content/legal";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: legalPage.privacy.metaTitle,
-};
+  description: legalPage.privacy.metaDescription,
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   const { hero, sections } = legalPage.privacy;

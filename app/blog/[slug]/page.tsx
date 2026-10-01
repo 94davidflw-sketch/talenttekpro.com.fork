@@ -17,6 +17,7 @@ import {
 } from "@/content/blog";
 import { cta } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { pageMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -27,11 +28,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  if (!post) return { title: "Article" };
-  return {
+  if (!post) return { title: { absolute: "Article | TalentTekPro" } };
+  return pageMetadata({
     title: `${post.title} | Blog | TalentTekPro`,
     description: post.excerpt,
-  };
+    path: `/blog/${post.slug}`,
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

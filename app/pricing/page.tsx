@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page/PageHero";
 import { PageCta } from "@/components/page/PageCta";
 import { Container } from "@/components/ui/Container";
 import { RevealOnScroll } from "@/components/effects/RevealOnScroll";
 import { pricingPage } from "@/content/pricing";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: pricingPage.metaTitle,
   description: pricingPage.metaDescription,
-};
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (

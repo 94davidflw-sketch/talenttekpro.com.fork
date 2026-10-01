@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   ArrowRight,
   Globe2,
@@ -20,11 +19,13 @@ import { processPage } from "@/content/process";
 import { media } from "@/content/media";
 import { cta } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: processPage.metaTitle,
   description: processPage.metaDescription,
-};
+  path: "/process",
+});
 
 const principleIcons = [Settings2, ShieldCheck, Sparkles, Globe2] as const;
 

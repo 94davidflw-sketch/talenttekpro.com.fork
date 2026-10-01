@@ -17,12 +17,13 @@ import { SoftRegion } from "@/components/effects/SoftRegion";
 import { SectionEdge } from "@/components/ui/SectionShell";
 import { careersPage } from "@/content/careers";
 import { media } from "@/content/media";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: careersPage.metaTitle,
   description: careersPage.metaDescription,
-};
+  path: "/careers",
+});
 
 const benefitIcons = [
   Globe2,
